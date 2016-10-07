@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour {
 	public GameObject explosion;
 
 	private int speed = 50000;
-	private int randomSpeed = 500;
-	private int lifetime = 2;
+	private int randomSpeed = 600;
+	private int lifetime = 10;
 	private int explosionRadius = 3;
 	private int damage = 25;
 
@@ -31,6 +31,11 @@ public class Bullet : MonoBehaviour {
 					e.DealDamage(damage);
 				}
 			}
+
+			GameObject.FindGameObjectsWithTag("Sun")[0].GetComponent<LightController>().Flash(damage);
+
+
+			Destroy(gameObject);
 		}
 
 		lastPosition = transform.position;
