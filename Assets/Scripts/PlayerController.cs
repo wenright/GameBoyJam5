@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 lookPosition = Vector3.zero;
 	private Vector3 lookOffset = Vector3.zero;
+	private int maxOffset = 15;
+	private Vector3 kickOffset = Vector3.zero;
+
+	private float fireRate = 0.2f;
+	private float lastShot = 0.0f;
 	
 	void Update () {
 		currentOrbitalTime += Time.deltaTime * orbitalSpeed;
@@ -21,13 +26,17 @@ public class PlayerController : MonoBehaviour {
 
 		transform.LookAt(lookPosition);
 
-		lookOffset.x += Input.GetAxis("Mouse X") * lookSpeed * Time.deltaTime;
-		lookOffset.y -= Input.GetAxis("Mouse Y") * lookSpeed * Time.deltaTime;
+		lookOffset.x = Mathf.Clamp(Input.GetAxis("Mouse X") * lookSpeed * Time.deltaTime + lookOffset.x, -maxOffset, maxOffset);
+		lookOffset.y = Mathf.Clamp(-Input.GetAxis("Mouse Y") * lookSpeed * Time.deltaTime + lookOffset.y, -maxOffset, maxOffset);
 
-		transform.Rotate(lookOffset.y, lookOffset.x, 0);
+		transform.Rotate(lookOffset.y + kickOffset.x, lookOffset.x + kickOffset.y, 0);
 
-		if (Input.GetButtonDown("Fire1")) {
+		kickOffset = kickOffset/2;
+
+		if (Input.GetButton("Fire1") && Time.time > lastShot + fireRate) {
 			Instantiate(bullet, transform.position + new Vector3(0, -5, 0), transform.rotation);
+			lastShot = Time.time;
+			kickOffset += Random.insideUnitSphere/2;
 		}
 	}
 
