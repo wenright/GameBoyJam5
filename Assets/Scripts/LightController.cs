@@ -12,6 +12,6 @@ public class LightController : MonoBehaviour {
 	}
 
 	public void Flash (int amount) {
-		extraIntensity += amount / 50.0f;
+		extraIntensity += amount / 75.0f;
 	}
 }
