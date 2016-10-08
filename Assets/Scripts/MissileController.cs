@@ -13,7 +13,7 @@ public class MissileController : MonoBehaviour {
 	void Start () {
 		target = GameObject.FindGameObjectsWithTag("Player")[0];
 
-		if (target == null) {
+		if (target == null || target.GetComponent<PlayerController>() == null) {
 			print("Cannot find player");
 		} else {
 			target.GetComponent<PlayerController>().LockOn(gameObject);
@@ -32,8 +32,10 @@ public class MissileController : MonoBehaviour {
 
 		foreach (Collider c in Physics.OverlapSphere(transform.position, explosionRadius)) {
 			if (c.gameObject.tag == "Player") {
-				target.GetComponent<PlayerController>().Damage(50);
-				Kill();
+				if (target.GetComponent<PlayerController>() != null) {
+					target.GetComponent<PlayerController>().Damage(50);
+					Kill();
+				}
 			} else if (c.gameObject.tag == "Flare") {
 				Kill();
 			} else if (c.gameObject.tag == "Terrain") {

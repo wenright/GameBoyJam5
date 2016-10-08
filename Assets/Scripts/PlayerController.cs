@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	private int maxOffset = 25;
 	private Vector3 kickOffset = Vector3.zero;
 
-	private float fireRate = 0.1f;
+	private float fireRate = 0.15f;
 	private float lastShot = 0.0f;
 
 	private int health = 100;

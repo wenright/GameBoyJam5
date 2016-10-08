@@ -13,12 +13,8 @@ public class EnemyController : MonoBehaviour {
 
 	void Awake () {
 		GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
-	}
 
-	void Update () {
-		if (Random.value > 0.995) {
-			Instantiate(missile, transform.position, transform.rotation);
-		}
+		InvokeRepeating("LaunchMissile", 3.0f, 1.0f);
 	}
 	
 	public void DealDamage (int amount) {
@@ -37,5 +33,9 @@ public class EnemyController : MonoBehaviour {
 			Destroy(Instantiate(smoke, transform.position, transform.rotation), 15);
 			Destroy(gameObject);
 		}
+	}
+
+	private void LaunchMissile () {
+		Instantiate(missile, transform.position, transform.rotation);
 	}
 }
