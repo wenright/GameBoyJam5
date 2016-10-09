@@ -6,11 +6,14 @@ public class MissileController : MonoBehaviour {
 	public GameObject explosion;
 
 	private GameObject target;
-	private int speed = 150;
-	private int explosionRadius = 3;
+	private int speed = 175;
+	private int explosionRadius = 5;
+	private float startTime;
 
 	void Start () {
-		target = GameObject.FindGameObjectsWithTag("Player")[0];
+		startTime = Time.time;
+
+		target = GameObject.FindGameObjectWithTag("Player");
 
 		if (target == null || target.GetComponent<PlayerController>() == null) {
 			print("Cannot find player");
@@ -38,7 +41,7 @@ public class MissileController : MonoBehaviour {
 				}
 			} else if (c.gameObject.tag == "Flare") {
 				Kill();
-			} else if (c.gameObject.tag == "Terrain") {
+			} else if (c.gameObject.tag == "Terrain" && Time.time > startTime + 2.0f) {
 				Kill();
 			} else if (c.gameObject.tag == "Bullet") {
 				Kill();

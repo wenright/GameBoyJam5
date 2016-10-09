@@ -5,10 +5,11 @@ public class BulletController : MonoBehaviour {
 
 	public GameObject explosion;
 
-	private int speed = 50000;
+	public int speed = 50000;
+	
 	private int randomSpeed = 600;
 	private int lifetime = 10;
-	
+
 	public int explosionRadius = 3;
 	public int damage = 25;
 
@@ -29,7 +30,7 @@ public class BulletController : MonoBehaviour {
 
 			// Change Shower size depending on what is hit
 			if (hit.transform.tag == "Enemy") {
-				expl.transform.GetChild(2).GetComponent<ParticleSystem>().startLifetime = 0.2f;
+				expl.transform.GetChild(2).GetComponent<ParticleSystem>().startLifetime = 0.2f * (damage / 200.0f);
 				expl.transform.GetChild(2).GetComponent<ParticleSystem>().startSize = 0.7f;
 			}
 
@@ -37,7 +38,8 @@ public class BulletController : MonoBehaviour {
 				EnemyController e = c.GetComponent<EnemyController>();
 
 				if (e != null) {
-					e.DealDamage(damage);
+					float d = Vector3.Distance(hit.point, c.gameObject.transform.position) / explosionRadius;
+					e.DealDamage((int) Mathf.Round((d * 5) * damage));
 				}
 			}
 

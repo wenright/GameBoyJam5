@@ -3,16 +3,15 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	public GameObject missile;
 	public GameObject explosion;
 	public GameObject smoke;
 
-	private int health = 100;
+	private int health = 500;
 	private int worth = 250;
 
 	private GameObject destination;
 
-	void Awake () {
+	void Start () {
 		destination = GameObject.FindGameObjectWithTag("Destination");
 
 		if (destination == null) {
@@ -20,8 +19,6 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
-
-		InvokeRepeating("LaunchMissile", Random.value * 10.0f, 20.0f);
 	}
 
 	public void DealDamage (int amount) {
@@ -42,9 +39,5 @@ public class EnemyController : MonoBehaviour {
 			Destroy(Instantiate(smoke, transform.position, transform.rotation), 15);
 			Destroy(gameObject);
 		}
-	}
-
-	private void LaunchMissile () {
-		Instantiate(missile, transform.position, transform.rotation);
 	}
 }

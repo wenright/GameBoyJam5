@@ -23,11 +23,11 @@ public class PlayerController : MonoBehaviour {
 	private AudioSource audioSource;
 
 	private int orbitalRadius = 1000;
-	private float orbitalSpeed = 0.1f;
+	private float orbitalSpeed = 0.08f;
 	private float currentOrbitalTime = Mathf.PI / 2.0f;
 	private int height = 1000;
 
-	private float lookSpeed = 100.0f;
+	private float lookSpeed;
 
 	private Vector3 lookPosition = Vector3.zero;
 	private Vector3 lookOffset = Vector3.zero;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 
 	private List<GameObject> lockedMissiles = new List<GameObject>();
 
-	void Awake () {
+	void Start () {
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 
@@ -157,12 +157,24 @@ public class PlayerController : MonoBehaviour {
 	private void ToggleZoom () {
 		int newLevel = zoomLevels.Dequeue();
 		Camera.main.fieldOfView = newLevel;
-		lookSpeed = newLevel * 5;
+		lookSpeed = newLevel * 4;
 		zoomLevels.Enqueue(newLevel);
 	}
 
 	private IEnumerator Reload () {
 		yield return new WaitForSeconds(reloadTime);
 		ammo = UpgradesController.clipSize;
+	}
+
+	public float GetOrbitalSpeed () {
+		return orbitalSpeed;
+	}
+
+	public float GetCurrentOrbitalTime () {
+		return currentOrbitalTime;
+	}
+
+	public int GetOrbitalRadius () {
+		return orbitalRadius;
 	}
 }
