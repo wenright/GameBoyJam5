@@ -8,8 +8,9 @@ public class BulletController : MonoBehaviour {
 	private int speed = 50000;
 	private int randomSpeed = 600;
 	private int lifetime = 10;
-	private int explosionRadius = 3;
-	private int damage = 25;
+	
+	public int explosionRadius = 3;
+	public int damage = 25;
 
 	private Vector3 lastPosition;
 

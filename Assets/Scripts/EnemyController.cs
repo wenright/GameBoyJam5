@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
 	public GameObject smoke;
 
 	private int health = 100;
+	private int worth = 250;
 
 	private GameObject destination;
 
@@ -22,11 +23,13 @@ public class EnemyController : MonoBehaviour {
 
 		InvokeRepeating("LaunchMissile", 2.0f, 10.0f);
 	}
-	
+
 	public void DealDamage (int amount) {
 		health -= amount;
 
 		if (health <= 0) {
+			UpgradesController.money += worth;
+
 			GameObject e = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
 
 			// Make a bigger explosion to let player know this vehicle has been destroyed

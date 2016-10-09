@@ -6,7 +6,7 @@ public class MissileController : MonoBehaviour {
 	public GameObject explosion;
 
 	private GameObject target;
-	private int speed = 125;
+	private int speed = 150;
 	private int explosionRadius = 3;
 
 	void Start () {
@@ -18,7 +18,7 @@ public class MissileController : MonoBehaviour {
 			target.GetComponent<PlayerController>().LockOn(gameObject);
 		}
 	}
-	
+
 	void Update () {
 		if (target == null) {
 			Kill();
