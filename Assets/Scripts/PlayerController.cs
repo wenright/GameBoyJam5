@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 lookPosition = Vector3.zero;
 	private Vector3 lookOffset = Vector3.zero;
-	private int maxOffset = 25;
+	private int maxOffset = 27;
 	private Vector3 kickOffset = Vector3.zero;
 
-	private float fireRate = 0.15f;
+	private float fireRate = 0.175f;
 	private float lastShot = 0.0f;
 
 	private int health = 100;

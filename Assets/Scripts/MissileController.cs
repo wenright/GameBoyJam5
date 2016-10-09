@@ -7,9 +7,8 @@ public class MissileController : MonoBehaviour {
 
 	private GameObject target;
 	private int speed = 125;
-	private int explosionRadius = 1;
+	private int explosionRadius = 3;
 
-	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectsWithTag("Player")[0];
 
@@ -20,7 +19,6 @@ public class MissileController : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (target == null) {
 			Kill();
@@ -28,7 +26,9 @@ public class MissileController : MonoBehaviour {
 		}
 
 		transform.LookAt(target.transform.position);
-		transform.Translate(transform.forward * speed * Time.deltaTime);
+		transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+		Debug.DrawLine(transform.position, target.transform.position);
 
 		foreach (Collider c in Physics.OverlapSphere(transform.position, explosionRadius)) {
 			if (c.gameObject.tag == "Player") {
@@ -40,6 +40,8 @@ public class MissileController : MonoBehaviour {
 				Kill();
 			} else if (c.gameObject.tag == "Terrain") {
 				Kill();
+			} else if (c.gameObject.tag == "Bullet") {
+				Kill();
 			}
 		}
 	}
@@ -49,7 +51,7 @@ public class MissileController : MonoBehaviour {
 	}
 
 	public void Kill () {
-		if (target != null && target.tag == "Player") {
+		if (target != null && target.tag == "Player" && target.GetComponent<PlayerController>() != null) {
 			target.GetComponent<PlayerController>().LoseLock(gameObject);
 		}
 

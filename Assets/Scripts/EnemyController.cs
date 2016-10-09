@@ -3,18 +3,24 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	public GameObject destination;
-
 	public GameObject missile;
 	public GameObject explosion;
 	public GameObject smoke;
 
 	private int health = 100;
 
+	private GameObject destination;
+
 	void Awake () {
+		destination = GameObject.FindGameObjectWithTag("Destination");
+
+		if (destination == null) {
+			print("Unable to find a destination for enemy");
+		}
+
 		GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
 
-		InvokeRepeating("LaunchMissile", 3.0f, 1.0f);
+		InvokeRepeating("LaunchMissile", 2.0f, 10.0f);
 	}
 	
 	public void DealDamage (int amount) {
