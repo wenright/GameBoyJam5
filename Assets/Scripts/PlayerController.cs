@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	public Text ammoText;
 	public Text flareText;
 	public Text moneyText;
+	public Text healthText;
 	public GameObject gameOverText;
 	public Image reticle;
 	public RectTransform limitViewIndicator;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 		ammoText.text = ammo + "/" + UpgradesController.clipSize;
 		flareText.text = "" + flares;
 		moneyText.text = "$" + UpgradesController.money;
+		healthText.text = health + "HP";
 
 		limitViewIndicator.anchoredPosition = new Vector2((lookOffset.x / maxOffset) * 20.5f, -50 - (lookOffset.y / maxOffset) * 5.5f);
 
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour {
 			gameOverText.SetActive(true);
 			audioSource.PlayOneShot(shipExplosionSound);
 			Destroy(GetComponent<PlayerController>());
+			healthText.text = "0HP";
 		}
 	}
 
