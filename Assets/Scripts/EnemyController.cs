@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 
 		GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
 
-		InvokeRepeating("LaunchMissile", 2.0f, 10.0f);
+		InvokeRepeating("LaunchMissile", Random.value * 10.0f, 20.0f);
 	}
 
 	public void DealDamage (int amount) {

@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour {
 	public Text ammoText;
 	public Text flareText;
 	public Text moneyText;
+	public GameObject gameOverText;
 	public Image reticle;
+	public RectTransform limitViewIndicator;
 
 	private AudioSource audioSource;
 
 	private int orbitalRadius = 1000;
 	private float orbitalSpeed = 0.1f;
-	private float currentOrbitalTime = 0.0f;
+	private float currentOrbitalTime = Mathf.PI / 2.0f;
 	private int height = 1000;
 
 	private float lookSpeed = 100.0f;
@@ -54,8 +56,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 		ammoText.text = ammo + "/" + UpgradesController.clipSize;
-		flareText.text = flares + "/" + UpgradesController.maxFlares;
+		flareText.text = "" + flares;
 		moneyText.text = "$" + UpgradesController.money;
+
+		limitViewIndicator.anchoredPosition = new Vector2((lookOffset.x / maxOffset) * 20.5f, -50 - (lookOffset.y / maxOffset) * 5.5f);
 
 		currentOrbitalTime += Time.deltaTime * orbitalSpeed;
 		transform.position = new Vector3(Mathf.Sin(currentOrbitalTime) * orbitalRadius, height, Mathf.Cos(currentOrbitalTime) * orbitalRadius);
@@ -115,13 +119,18 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Restart")) {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
+
+		if (Input.GetButtonDown("Reload")) {
+			ammo = 0;
+			StartCoroutine("Reload");
+		}
 	}
 
 	public void Damage (int amount) {
 		health -= amount;
 
 		if (health <= 0) {
-			print("Game Over!");
+			gameOverText.SetActive(true);
 			audioSource.PlayOneShot(shipExplosionSound);
 			Destroy(GetComponent<PlayerController>());
 		}
