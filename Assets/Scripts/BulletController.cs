@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour {
 	public GameObject explosion;
 
 	public int speed = 50000;
-	
+
 	private int randomSpeed = 600;
 	private int lifetime = 10;
 
@@ -35,11 +35,16 @@ public class BulletController : MonoBehaviour {
 			}
 
 			foreach (Collider c in Physics.OverlapSphere(hit.point, explosionRadius)) {
-				EnemyController e = c.GetComponent<EnemyController>();
+				if (c.tag == "Enemy") {
+					EnemyController e = c.GetComponent<EnemyController>();
 
-				if (e != null) {
-					float d = Vector3.Distance(hit.point, c.gameObject.transform.position) / explosionRadius;
-					e.DealDamage((int) Mathf.Round((d * 5) * damage));
+					if (e != null) {
+						e.DealDamage(CalculateDamage(hit.point, c));
+					}
+				} else if (c.tag == "Player") {
+					int d = CalculateDamage(hit.point, c);
+					print(d);
+					c.GetComponent<PlayerController>().Damage(d);
 				}
 			}
 
@@ -55,5 +60,10 @@ public class BulletController : MonoBehaviour {
 		}
 
 		lastPosition = transform.position;
+	}
+
+	private int CalculateDamage (Vector3 hitPoint, Collider c) {
+		float d = Vector3.Distance(hitPoint, c.gameObject.transform.position) / explosionRadius;
+		return (int) Mathf.Round((d * 5) * damage);
 	}
 }

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 	private int reloadTime = 5;
 	private float ammo = UpgradesController.clipSize;
 
-	private int health = 100;
+	private int health = 1000;
 	private int flares = UpgradesController.maxFlares;
 
 	private Queue<int> zoomLevels = new Queue<int>(new int[] {12, 7, 4});
