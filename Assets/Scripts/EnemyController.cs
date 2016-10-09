@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 		GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
 	}
 
-	public void DealDamage (int amount) {
+	public void Damage (int amount) {
 		health -= amount;
 
 		if (health <= 0) {

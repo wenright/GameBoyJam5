@@ -80,9 +80,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (Input.GetButton("Fire1") && Time.time > lastShot + UpgradesController.fireRate && ammo > 0) {
-			GameObject b = Instantiate(bullet, transform.position + new Vector3(0, -5, 0), transform.rotation) as GameObject;
-			b.GetComponent<BulletController>().explosionRadius = UpgradesController.explosionRadius;
-			b.GetComponent<BulletController>().damage = UpgradesController.damage;
+			Instantiate(bullet, transform.position + new Vector3(0, -5, 0), transform.rotation);
 
 			lastShot = Time.time;
 			kickOffset += Random.insideUnitSphere;

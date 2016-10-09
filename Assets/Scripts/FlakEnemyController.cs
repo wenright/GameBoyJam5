@@ -18,7 +18,7 @@ public class FlakEnemyController : MonoBehaviour {
 		if (target == null || target.GetComponent<PlayerController>() == null) {
 			print("Cannot find player");
 		} else {
-			InvokeRepeating("FireBullet", Random.value * 10.0f, 0.2f);
+			InvokeRepeating("FireBullet", Random.value * 10.0f + 10.0f, 0.2f);
 		}
 	}
 
@@ -36,9 +36,6 @@ public class FlakEnemyController : MonoBehaviour {
 			return;
 		}
 
-		GameObject b = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
-		b.GetComponent<BulletController>().explosionRadius = 10;
-
 		float s = target.GetComponent<PlayerController>().GetOrbitalSpeed();
 		float leadTime = 1.0f * s;
 		float t = target.GetComponent<PlayerController>().GetCurrentOrbitalTime() + leadTime;
@@ -46,7 +43,7 @@ public class FlakEnemyController : MonoBehaviour {
 
 		Vector3 leadTarget = new Vector3(Mathf.Sin(t) * r, target.transform.position.y, Mathf.Cos(t) * r);
 
-		b.transform.LookAt(leadTarget);
+		(Instantiate(bullet, transform.position, transform.rotation) as GameObject).transform.LookAt(leadTarget);
 
 		bullets--;
 	}
