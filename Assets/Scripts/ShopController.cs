@@ -111,7 +111,7 @@ public class ShopController : MonoBehaviour {
 				break;
 			case 1:
 				UpgradesController.accuracyLevel++;
-				UpgradesController.accuracy *= 0.9f;
+				UpgradesController.accuracy *= 0.8f;
 				UpgradesController.accuracyCost *= 2;
 				break;
 			case 2:

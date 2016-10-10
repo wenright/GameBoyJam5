@@ -16,7 +16,7 @@ public class BulletController : MonoBehaviour {
 
 	void Start () {
 		lastPosition = transform.position;
-		GetComponent<Rigidbody>().AddForce(transform.forward * speed + Random.insideUnitSphere * randomSpeed);
+		GetComponent<Rigidbody>().AddForce(transform.forward * speed + Random.insideUnitSphere * randomSpeed * UpgradesController.accuracy);
 		Destroy(gameObject, lifetime);
 	}
 

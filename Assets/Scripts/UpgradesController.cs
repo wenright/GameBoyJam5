@@ -7,7 +7,7 @@
 	public static int damageLevel = 0;
 	public static int damageCost = 300;
 
-	public static float accuracy = 0.2f;
+	public static float accuracy = 1.0f;
 	public static int accuracyLevel = 0;
 	public static int accuracyCost = 200;
 
