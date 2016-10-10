@@ -36,7 +36,7 @@ public class MissileController : MonoBehaviour {
 		foreach (Collider c in Physics.OverlapSphere(transform.position, explosionRadius)) {
 			if (c.gameObject.tag == "Player") {
 				if (target.GetComponent<PlayerController>() != null) {
-					target.GetComponent<PlayerController>().Damage(50);
+					target.GetComponent<PlayerController>().Damage(250);
 					Kill();
 				}
 			} else if (c.gameObject.tag == "Flare") {

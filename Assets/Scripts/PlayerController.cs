@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public Text moneyText;
 	public Text healthText;
 	public GameObject gameOverText;
+	public GameObject waveText;
 	public Image reticle;
 	public RectTransform limitViewIndicator;
 
@@ -53,6 +54,21 @@ public class PlayerController : MonoBehaviour {
 		audioSource = GetComponent<AudioSource>();
 
 		ToggleZoom();
+
+		Screen.SetResolution(480, 432, false);
+
+		waveText.GetComponent<Text>().text = "Wave " + UpgradesController.wave;
+		StartCoroutine("HideWaveText");
+	}
+
+	private IEnumerator HideWaveText () {
+		yield return new WaitForSeconds(3);
+		waveText.SetActive(false);
+	}
+
+	void OnApplicationFocus (bool hasFocus) {
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void Update () {

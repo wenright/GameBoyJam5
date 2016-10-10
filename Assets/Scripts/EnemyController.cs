@@ -39,5 +39,9 @@ public class EnemyController : MonoBehaviour {
 			Destroy(Instantiate(smoke, transform.position, transform.rotation), 15);
 			Destroy(gameObject);
 		}
+
+		if (Vector3.Distance(destination.transform.position, transform.position) < 15) {
+			Destroy(gameObject, 1);
+		}
 	}
 }

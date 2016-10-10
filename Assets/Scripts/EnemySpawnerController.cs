@@ -36,7 +36,7 @@ public class EnemySpawnerController : MonoBehaviour {
 				Instantiate(missileEnemy, GetRandomSpawnPoint() - Vector3.right * followDistance, transform.rotation);
 				Instantiate(enemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
 
-				yield return new WaitForSeconds(20);
+				yield return new WaitForSeconds(50);
 
 				break;
 			case 2:
@@ -67,7 +67,7 @@ public class EnemySpawnerController : MonoBehaviour {
 				yield return new WaitForSeconds(9);
 				Instantiate(missileEnemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
 
-				yield return new WaitForSeconds(25);
+				yield return new WaitForSeconds(50);
 
 				break;
 			case 3:
@@ -101,7 +101,7 @@ public class EnemySpawnerController : MonoBehaviour {
 				yield return new WaitForSeconds(8);
 				Instantiate(missileEnemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
 
-				yield return new WaitForSeconds(25);
+				yield return new WaitForSeconds(50);
 
 				break;
 			case 4:
@@ -133,10 +133,56 @@ public class EnemySpawnerController : MonoBehaviour {
 				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
 				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.forward * followDistance, transform.rotation);
 
-				yield return new WaitForSeconds(45);
+				yield return new WaitForSeconds(50);
 
 				break;
 			default:
+				Instantiate(enemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
+				Instantiate(missileEnemy, GetRandomSpawnPoint() - Vector3.right * followDistance, transform.rotation);
+				Instantiate(enemy, GetRandomSpawnPoint() + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(20);
+
+				Instantiate(enemy, GetRandomSpawnPoint() - Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(25);
+
+				Instantiate(enemy, spawnPoint1.position - Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, spawnPoint1.position + Vector3.right * followDistance, transform.rotation);
+				Instantiate(missileEnemy, spawnPoint1.position + Vector3.forward * followDistance, transform.rotation);
+				Instantiate(flakEnemy, spawnPoint1.position + Vector3.right * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(25);
+
+				Instantiate(enemy, spawnPoint2.position - Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, spawnPoint2.position + Vector3.right * followDistance, transform.rotation);
+				Instantiate(missileEnemy, spawnPoint2.position + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(30);
+
+				Instantiate(flakEnemy, GetRandomSpawnPoint() - Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, GetRandomSpawnPoint() + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(30);
+
+				Instantiate(enemy, spawnPoint1.position - Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, spawnPoint1.position + Vector3.right * followDistance, transform.rotation);
+				Instantiate(flakEnemy, spawnPoint1.position + Vector3.right * followDistance, transform.rotation);
+				Instantiate(missileEnemy, spawnPoint1.position + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(5);
+
+				Instantiate(missileEnemy, spawnPoint1.position + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(15);
+
+				Instantiate(flakEnemy, spawnPoint1.position + Vector3.right * followDistance, transform.rotation);
+				Instantiate(missileEnemy, spawnPoint1.position + Vector3.forward * followDistance, transform.rotation);
+
+				yield return new WaitForSeconds(50);
 				break;
 		}
 
