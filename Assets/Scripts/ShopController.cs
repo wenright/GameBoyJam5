@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ShopController : MonoBehaviour {
@@ -15,6 +16,9 @@ public class ShopController : MonoBehaviour {
 	private int currentCost;
 
 	public void Start () {
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+
 		LoadPage();
 	}
 
@@ -49,9 +53,11 @@ public class ShopController : MonoBehaviour {
 		LoadPage();
 	}
 
-	private void LoadPage () {
-		print(currentPage);
+	public void ExitShop () {
+		SceneManager.LoadScene("Game");
+	}
 
+	private void LoadPage () {
 		moneyText.text = "$" + UpgradesController.money;
 
 		switch (currentPage) {

@@ -1,6 +1,6 @@
 ﻿public class UpgradesController {
 	public static int wave = 1;
-	public static int money = 3000;
+	public static int money = 1000;
 
 	public static int damage = 25;
 	public static int explosionRadius = 10;
@@ -15,7 +15,7 @@
 	public static int flaresLevel = 0;
 	public static int flaresCost = 100;
 
-	public static float fireRate = 0.02f;
+	public static float fireRate = 0.2f;
 	public static int fireRateLevel = 0;
 	public static int fireRateCost = 250;
 
