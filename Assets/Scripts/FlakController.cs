@@ -10,7 +10,7 @@ public class FlakController : MonoBehaviour {
 	private int lifetime = 10;
 
 	private int explosionRadius = 10;
-	private int damage = 25;
+	private int damage = 8;
 
 	void Start () {
 		GetComponent<Rigidbody>().AddForce(transform.forward * speed + Random.insideUnitSphere * randomSpeed);

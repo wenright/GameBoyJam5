@@ -36,11 +36,11 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 kickOffset = Vector3.zero;
 
 	private float lastShot = 0.0f;
-	private int reloadTime = 5;
+	private float reloadTime = UpgradesController.reloadTime;
 	private float ammo = UpgradesController.clipSize;
 
-	private int health = 1000;
-	private int flares = UpgradesController.maxFlares;
+	private int health = UpgradesController.hp;
+	private int flares = UpgradesController.flares;
 
 	private Queue<int> zoomLevels = new Queue<int>(new int[] {12, 7, 4});
 
